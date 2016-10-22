@@ -218,7 +218,7 @@ public class LTHRadioButton: UIView {
 	
 	/// Sets the selected state of the control.
 	///
-	/// - parameter animated: `true` to animate the transition between selected states, `false` to make the transition immediate. Defaults to `true`.
+	/// - parameter animated: A `Boolean` value which determines whether the transition should be animated or not. Defaults to `true`.
 	public func select(animated: Bool = true) {
 		guard !isSelected else { return }
 		isSelected = true

@@ -6,6 +6,38 @@ The clip below has 3 sections: full speed, 25% and 10%, but after converting it 
 
 ![](https://rolandleth.com/assets/radio-button/gif.gif)
 
+## How to install
+
+#### CocoaPods
+
+[CocoaPods](https://cocoapods.org) is a dependency manager for Cocoa projects. You can install it with the following terminal command:
+
+```
+gem install cocoapods
+```
+
+To integrate `LTHRadioButton` into your Xcode project using CocoaPods, specify it in your Podfile:
+
+```ruby
+source 'https://github.com/CocoaPods/Specs.git'
+platform :ios, '9.0'
+use_frameworks!
+
+target '<Your Target Name>' do
+  pod 'LTHRadioButton'
+end
+```
+
+Then, run the following terminal command:
+
+```
+pod install
+```
+
+#### Manual
+
+Drag `LTHRadioButton.swift` from the `source` folder into your Xcode project.
+
 ## How to use
 
 The initializer takes up to 3 params: a `radius`, a `selectedColor`, and a `deselectedColor`. All of them are optional:
