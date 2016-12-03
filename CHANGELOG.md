@@ -1,3 +1,8 @@
+# 1.0.3
+
+* Tests added.
+* README updated.
+
 # 1.0.2
 
 * Pod fixed. Tag bumped to keep them in sync.
