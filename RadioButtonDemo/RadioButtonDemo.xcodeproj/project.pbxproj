@@ -14,7 +14,7 @@
 		2AD5AD2C1DB7E9D60002A252 /* LTHRadioButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AD5AD2B1DB7E9D60002A252 /* LTHRadioButton.swift */; };
 		2AD5AD2E1DB7EA080002A252 /* RadioCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AD5AD2D1DB7EA080002A252 /* RadioCell.swift */; };
 		2ADCF2F41DF34BCD00088BB3 /* RadioButtonDemoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ADCF2F31DF34BCD00088BB3 /* RadioButtonDemoTests.swift */; };
-		2ADCF2FB1DF34BE600088BB3 /* LTHRadioButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AD5AD2B1DB7E9D60002A252 /* LTHRadioButton.swift */; };
+		2ADCF2FD1DF4664900088BB3 /* RadioButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2ADCF2FC1DF4664900088BB3 /* RadioButton.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,6 +39,7 @@
 		2ADCF2F11DF34BCD00088BB3 /* RadioButtonDemoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RadioButtonDemoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2ADCF2F31DF34BCD00088BB3 /* RadioButtonDemoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadioButtonDemoTests.swift; sourceTree = "<group>"; };
 		2ADCF2F51DF34BCD00088BB3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2ADCF2FC1DF4664900088BB3 /* RadioButton.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RadioButton.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,6 +85,7 @@
 				2AD5AD151DB7E8420002A252 /* AppDelegate.swift */,
 				2AD5AD171DB7E8420002A252 /* ViewController.swift */,
 				2AD5AD2D1DB7EA080002A252 /* RadioCell.swift */,
+				2ADCF2FC1DF4664900088BB3 /* RadioButton.xib */,
 				2ADCF2EC1DF34BC100088BB3 /* Supporting Files */,
 			);
 			path = RadioButtonDemo;
@@ -203,6 +205,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2AD5AD201DB7E8420002A252 /* LaunchScreen.storyboard in Resources */,
+				2ADCF2FD1DF4664900088BB3 /* RadioButton.xib in Resources */,
 				2AD5AD1D1DB7E8420002A252 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -232,7 +235,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2ADCF2FB1DF34BE600088BB3 /* LTHRadioButton.swift in Sources */,
 				2ADCF2F41DF34BCD00088BB3 /* RadioButtonDemoTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -440,6 +442,7 @@
 				2ADCF2FA1DF34BCD00088BB3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

@@ -276,12 +276,28 @@ public class LTHRadioButton: UIView {
 	///
 	/// - parameter radius:          A constant, indicating the radius. Optional, defaults to `18`.
 	/// - parameter selectedColor:   The `UIColor` used for the selected state. Optional, defaults to a light blue.
-	/// - parameter deselectedColor: The `UIColor` used for the deselected state. Optional, defaults to `UIColor.lightGray`.
+	/// - parameter deselectedColor: The `UIColor` used for the deselected state. Optional, defaults to `.lightGray`.
 	///
 	/// - returns: A newly created radio button.
 	public init(radius: CGFloat = 18, selectedColor: UIColor? = nil, deselectedColor: UIColor? = nil) {
 		let size = CGSize(width: radius, height: radius)
 		super.init(frame: CGRect(origin: .zero, size: size))
+		commonInit(radius: radius, selectedColor: selectedColor, deselectedColor: deselectedColor)
+	}
+	
+	/// Called when a radio button is loaded from a xib. `selectedColor` and `deselectedColor` can be either added as *User Defined Runtime Attributes*, or set after initialization.
+	required public init?(coder aDecoder: NSCoder) {
+		super.init(coder: aDecoder)
+		commonInit(radius: frame.size.width, selectedColor: nil, deselectedColor: nil)
+	}
+	
+	/// Performs the initialization of the radio button.
+	///
+	/// - parameter radius:          A constant, indicating the radius.
+	/// - parameter selectedColor:   The `UIColor` used for the selected state, defaults to a light blue if `nil`.
+	/// - parameter deselectedColor: The `UIColor` used for the deselected state, defaults to `.lightGray` if `nil`.
+	private func commonInit(radius: CGFloat, selectedColor: UIColor?, deselectedColor: UIColor?) {
+		let size = CGSize(width: radius, height: radius)
 		
 		backgroundColor      = .clear
 		self.selectedColor   = selectedColor ?? self.selectedColor
@@ -314,7 +330,4 @@ public class LTHRadioButton: UIView {
 		waveCircle.center             = center
 	}
 	
-	required public init?(coder aDecoder: NSCoder) {
-		fatalError("init(coder:) has not been implemented")
-	}
 }

@@ -1,3 +1,8 @@
+# 1.1.0
+
+* Interface builder suport added.
+* Improved tests.
+
 # 1.0.3
 
 * Tests added.
