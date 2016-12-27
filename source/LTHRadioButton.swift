@@ -219,6 +219,7 @@ public class LTHRadioButton: UIView {
 	/// Sets the selected state of the control.
 	///
 	/// - parameter animated: A `Boolean` value which determines whether the transition should be animated or not. Defaults to `true`.
+	@objc(selectAnimated:)
 	public func select(animated: Bool = true) {
 		guard !isSelected else { return }
 		isSelected = true
@@ -242,6 +243,7 @@ public class LTHRadioButton: UIView {
 	/// Sets the deselected state of the control.
 	///
 	/// - parameter animated: A `Boolean` value which determines whether the transition should be animated or not. Defaults to `true`.
+	@objc(deselectAnimated:)
 	public func deselect(animated: Bool = true) {
 		guard isSelected else { return }
 		isSelected = false
