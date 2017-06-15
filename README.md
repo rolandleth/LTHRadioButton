@@ -1,10 +1,10 @@
 # LTHRadioButton
 
-Slightly inspired by Google's material radio button. 
+Slightly inspired by Google's material radio button.
 
-The clip below has 3 sections: full speed, 25% and 10%, but after converting it to GIF, it actually made it longer, so the 10% part takes a really long time. [Here's](https://rolandleth.com/assets/radio-button/video.mp4) an mp4 link; try with Chrome if Safari doesn't work - for me it doesn't.
+The clip below has 3 sections: full speed, 25% and 10%, but after converting it to GIF, it actually made it longer, so the 10% part takes a really long time. [Here's](https://rolandleth.com/images/radio-button/video.mp4) an mp4 link; try with Chrome if Safari doesn't work - for me it doesn't.
 
-![](https://rolandleth.com/assets/radio-button/gif.gif)
+![](https://rolandleth.com/images/radio-button/gif.gif)
 
 ## How to install
 
@@ -87,7 +87,7 @@ radioButton.deselect(animated: false)
 
 ## Apps using this control
 
-If you're using this control, I'd love hearing from you!  
+If you're using this control, I'd love hearing from you!
 
 ## License
 Licensed under MIT. If you'd like (or need) a license without attribution, don't hesitate to [contact me](mailto:roland@leth.ro).

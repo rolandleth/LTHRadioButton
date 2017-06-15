@@ -218,7 +218,7 @@ public class LTHRadioButton: UIView {
 	
 	/// Sets the selected state of the control.
 	///
-	/// - parameter animated: A `Boolean` value which determines whether the transition should be animated or not. Defaults to `true`.
+	/// - Parameter animated: A `Boolean` value which determines whether the transition should be animated or not. Defaults to `true`.
 	@objc(selectAnimated:)
 	public func select(animated: Bool = true) {
 		guard !isSelected else { return }
@@ -242,7 +242,7 @@ public class LTHRadioButton: UIView {
 	
 	/// Sets the deselected state of the control.
 	///
-	/// - parameter animated: A `Boolean` value which determines whether the transition should be animated or not. Defaults to `true`.
+	/// - Parameter animated: A `Boolean` value which determines whether the transition should be animated or not. Defaults to `true`.
 	@objc(deselectAnimated:)
 	public func deselect(animated: Bool = true) {
 		guard isSelected else { return }
@@ -276,11 +276,10 @@ public class LTHRadioButton: UIView {
 	
 	/// Initializes and returns a radio button with a radius, a selected color and a deselected color.
 	///
-	/// - parameter radius:          A constant, indicating the radius. Optional, defaults to `18`.
-	/// - parameter selectedColor:   The `UIColor` used for the selected state. Optional, defaults to a light blue.
-	/// - parameter deselectedColor: The `UIColor` used for the deselected state. Optional, defaults to `.lightGray`.
-	///
-	/// - returns: A newly created radio button.
+	/// - Parameters:
+	///   - radius: A constant, indicating the radius. Optional, defaults to `18`.
+	///   - selectedColor: The `UIColor` used for the selected state. Optional, defaults to a light blue.
+	///   - deselectedColor: The `UIColor` used for the deselected state. Optional, defaults to `.lightGray`.
 	public init(radius: CGFloat = 18, selectedColor: UIColor? = nil, deselectedColor: UIColor? = nil) {
 		let size = CGSize(width: radius, height: radius)
 		super.init(frame: CGRect(origin: .zero, size: size))
@@ -295,9 +294,10 @@ public class LTHRadioButton: UIView {
 	
 	/// Performs the initialization of the radio button.
 	///
-	/// - parameter radius:          A constant, indicating the radius.
-	/// - parameter selectedColor:   The `UIColor` used for the selected state, defaults to a light blue if `nil`.
-	/// - parameter deselectedColor: The `UIColor` used for the deselected state, defaults to `.lightGray` if `nil`.
+	/// - Parameters:
+	///   - radius: A constant, indicating the radius.
+	///   - selectedColor: The `UIColor` used for the selected state, defaults to a light blue if `nil`.
+	///   - deselectedColor: The `UIColor` used for the deselected state, defaults to `.lightGray` if `nil`.
 	private func commonInit(radius: CGFloat, selectedColor: UIColor?, deselectedColor: UIColor?) {
 		let size = CGSize(width: radius, height: radius)
 		
