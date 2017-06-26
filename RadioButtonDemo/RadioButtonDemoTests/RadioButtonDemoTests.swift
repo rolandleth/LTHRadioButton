@@ -12,7 +12,7 @@ import RadioButtonDemo
 class RadioButtonDemoTests: XCTestCase {
 	
 	private let selectedColor = UIColor(red: 0.29, green: 0.56, blue: 0.88, alpha: 1.0)
-	private lazy var mirror: Mirror = Mirror(reflecting: self.radioButton)
+	private lazy var mirror: Mirror = Mirror(reflecting: self.radioButton!)
 	private var radioButton: LTHRadioButton!
 	
 	
@@ -130,7 +130,8 @@ class RadioButtonDemoTests: XCTestCase {
 		let expected: Set<String> = [
 			"waveCircle", "circle", "innerCircle",
 			"selectedColor", "deselectedColor",
-			"isSelected", "innerIncreaseDelta"
+			"isSelected", "innerIncreaseDelta",
+			"didSelect", "didDeselect", "tapGesture.storage" // .storage for lazy vars.
 			// Computed properties aren't visible in mirrors.
 //			"innerBorderWidth", "innerIncreasedWidth"
 		]
@@ -139,7 +140,39 @@ class RadioButtonDemoTests: XCTestCase {
 		let difference = actual.symmetricDifference(expected)
 		
 		// ¯\-(ツ)-/¯ Not super-useful, I know.
-		XCTAssertTrue(difference.isEmpty, "Properties have changed!")
+		XCTAssertTrue(difference.isEmpty, "Properties have changed: \(difference)")
+	}
+	
+	func testOnSelectCallback() {
+		var called = false
+		radioButton = LTHRadioButton()
+		
+		radioButton.onSelect {
+			called = true
+		}
+		
+		XCTAssertFalse(called)
+		
+		radioButton.select(animated: false)
+		
+		XCTAssertTrue(called)
+	}
+	
+	func testOnDeselectCallback() {
+		var called = false
+		radioButton = LTHRadioButton()
+		
+		radioButton.onDeselect {
+			called = true
+		}
+		
+		radioButton.select(animated: false)
+		
+		XCTAssertFalse(called)
+		
+		radioButton.deselect(animated: false)
+		
+		XCTAssertTrue(called)
 	}
 	
 	

@@ -44,6 +44,40 @@ public class LTHRadioButton: UIView {
 		return innerCircle.frame.width * innerIncreaseDelta
 	}
 	
+	/// The tap gesture that will handle the `onSelect`/`onDeselect` callbacks.
+	private lazy var tapGesture: UITapGestureRecognizer = {
+		let tg = UITapGestureRecognizer()
+		
+		tg.numberOfTapsRequired = 1
+		tg.numberOfTouchesRequired = 1
+		tg.addTarget(self, action: #selector(self.toggleState))
+		
+		return tg
+	}()
+	/// The closure that will be called when the control is selected.
+	private var didSelect: () -> Void = { }
+	/// The closure that will be called when the control is deselected.
+	private var didDeselect: () -> Void = { }
+	
+	
+	// MARK: - Callbacks
+	
+	/// Sets a closure that will be called when the control is selected.
+	///
+	/// - Important: Calling this will also add a `tapGestureRecognizer` on the control.
+	/// - Parameter closure: The closure the be called.
+	public func onSelect(execute closure: @escaping () -> Void) {
+		didSelect = closure
+	}
+	
+	/// Sets a closure that will be called when the control is deselected.
+	///
+	/// - Important: Calling this will also add a `tapGestureRecognizer` on the control.
+	/// - Parameter closure: The closure the be called.
+	public func onDeselect(execute closure: @escaping () -> Void) {
+		didDeselect = closure
+	}
+	
 	
 	// MARK: - Select animations
 	
@@ -227,6 +261,8 @@ public class LTHRadioButton: UIView {
 		innerCircle.layer.borderWidth = innerBorderWidth
 		circle.layer.borderColor      = selectedColor.cgColor
 		
+		didSelect()
+		
 		guard animated else { return }
 		
 		innerCircle.layer.add(innerBorderIncrease(), forKey: "innerBorderWidth")
@@ -250,6 +286,7 @@ public class LTHRadioButton: UIView {
 		
 		removeAnimations()
 		setDeselectedEndValues()
+		didDeselect()
 		
 		guard animated else { return }
 		
@@ -269,6 +306,20 @@ public class LTHRadioButton: UIView {
 		waveCircle.layer.removeAllAnimations()
 		circle.layer.removeAllAnimations()
 		innerCircle.layer.removeAllAnimations()
+	}
+	
+	/// Toggles between selected and deselected states.
+	@objc private func toggleState() {
+		guard isSelected else { return select() }
+		
+		deselect()
+	}
+	
+	/// Adds the `tapGestureRecognizer`.
+	private func addTapGesture() {
+		guard gestureRecognizers?.contains(tapGesture) != true else { return }
+		
+		addGestureRecognizer(tapGesture)
 	}
 	
 	
