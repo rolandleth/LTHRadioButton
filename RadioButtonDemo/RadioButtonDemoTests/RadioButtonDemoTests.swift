@@ -30,16 +30,16 @@ class RadioButtonDemoTests: XCTestCase {
 	func testPassedParameters() {
 		let selectedColor = UIColor.red
 		let deselectedColor = UIColor.blue
-		let size = CGSize(width: 20, height: 20)
+		let diameter: CGFloat = 20
 		
-		radioButton = LTHRadioButton(radius: size.width,
+		radioButton = LTHRadioButton(diameter: diameter,
 		                             selectedColor: selectedColor,
 		                             deselectedColor: deselectedColor)
 		
 		XCTAssertNotNil(radioButton)
 		XCTAssertEqual(radioButton.selectedColor, selectedColor)
 		XCTAssertEqual(radioButton.deselectedColor, deselectedColor)
-		XCTAssertEqual(radioButton.frame.size, size)
+		XCTAssertEqual(radioButton.frame.size, CGSize(width: diameter, height: diameter))
 	}
 	
 	func testXibLoading() {
@@ -47,12 +47,12 @@ class RadioButtonDemoTests: XCTestCase {
 			.loadNibNamed("RadioButton", owner: self, options: nil)?
 			.first as? LTHRadioButton
 		
-		let radius: CGFloat = 24
+		let diameter: CGFloat = 24
 		
 		XCTAssertNotNil(radioButton, "Failed to load xib.")
 		XCTAssertEqual(radioButton.selectedColor, UIColor.blue)
 		XCTAssertEqual(radioButton.deselectedColor, UIColor.red)
-		XCTAssertEqual(radioButton.frame.size, CGSize(width: radius, height: radius))
+		XCTAssertEqual(radioButton.frame.size, CGSize(width: diameter, height: diameter))
 		
 		// These, in conjunction with `testCircles`, are enough to assert that `commonInit` was properly ran.
 		mirror.children.forEach {
@@ -65,9 +65,9 @@ class RadioButtonDemoTests: XCTestCase {
 				XCTAssertEqual(innerCircle.layer.borderColor, UIColor.blue.cgColor)
 			case "circle"?:
 				guard let circle = $0.value as? UIView else { return XCTFail() }
-				XCTAssertEqual(circle.layer.cornerRadius, radius * 0.5)
+				XCTAssertEqual(circle.layer.cornerRadius, diameter * 0.5)
 				XCTAssertEqual(circle.layer.borderColor, UIColor.red.cgColor)
-				XCTAssertEqual(circle.layer.borderWidth, radius * 0.1)
+				XCTAssertEqual(circle.layer.borderWidth, diameter * 0.1)
 			default: return
 			}
 		}
@@ -76,10 +76,10 @@ class RadioButtonDemoTests: XCTestCase {
 	func testCircles() {
 		radioButton = LTHRadioButton()
 		
-		let radius: CGFloat = 18
-		let innerRadius: CGFloat = radius / 1.6
-		let innerSize = CGSize(width: innerRadius, height: innerRadius)
-		let innerCornerRadius: CGFloat = innerRadius * 0.5
+		let diameter: CGFloat = 18
+		let innerDiameter: CGFloat = diameter / 1.6
+		let innerSize = CGSize(width: innerDiameter, height: innerDiameter)
+		let innerCornerRadius: CGFloat = innerDiameter * 0.5
 		
 		mirror.children.forEach {
 			switch $0.label {
@@ -104,10 +104,10 @@ class RadioButtonDemoTests: XCTestCase {
 				XCTAssertEqual(innerCircle.center, radioButton.center)
 			case "circle"?:
 				guard let circle = $0.value as? UIView else { return XCTFail() }
-				XCTAssertEqual(circle.layer.cornerRadius, radius * 0.5)
+				XCTAssertEqual(circle.layer.cornerRadius, diameter * 0.5)
 				XCTAssertEqual(circle.layer.backgroundColor, UIColor.clear.cgColor)
 				XCTAssertEqual(circle.layer.borderColor, UIColor.lightGray.cgColor)
-				XCTAssertEqual(circle.layer.borderWidth, radius * 0.1)
+				XCTAssertEqual(circle.layer.borderWidth, diameter * 0.1)
 				XCTAssertEqual(circle.center, radioButton.center)
 			default: return
 			}

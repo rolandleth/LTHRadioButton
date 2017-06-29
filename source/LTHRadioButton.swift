@@ -333,32 +333,32 @@ public class LTHRadioButton: UIView {
 	
 	// MARK: - Init
 	
-	/// Initializes and returns a radio button with a radius, a selected color and a deselected color.
+	/// Initializes and returns a radio button with a diameter, a selected color and a deselected color.
 	///
 	/// - Parameters:
-	///   - radius: A constant, indicating the radius. Optional, defaults to `18`.
+	///   - diameter: A constant, indicating the diameter. Optional, defaults to `18`.
 	///   - selectedColor: The `UIColor` used for the selected state. Optional, defaults to a light blue.
 	///   - deselectedColor: The `UIColor` used for the deselected state. Optional, defaults to `.lightGray`.
-	public init(radius: CGFloat = 18, selectedColor: UIColor? = nil, deselectedColor: UIColor? = nil) {
-		let size = CGSize(width: radius, height: radius)
+	public init(diameter: CGFloat = 18, selectedColor: UIColor? = nil, deselectedColor: UIColor? = nil) {
+		let size = CGSize(width: diameter, height: diameter)
 		super.init(frame: CGRect(origin: .zero, size: size))
-		commonInit(radius: radius, selectedColor: selectedColor, deselectedColor: deselectedColor)
+		commonInit(diameter: diameter, selectedColor: selectedColor, deselectedColor: deselectedColor)
 	}
 	
 	/// Called when a radio button is loaded from a xib. `selectedColor` and `deselectedColor` can be either added as *User Defined Runtime Attributes*, or set after initialization.
 	required public init?(coder aDecoder: NSCoder) {
 		super.init(coder: aDecoder)
-		commonInit(radius: frame.size.width, selectedColor: nil, deselectedColor: nil)
+		commonInit(diameter: frame.size.width, selectedColor: nil, deselectedColor: nil)
 	}
 	
 	/// Performs the initialization of the radio button.
 	///
 	/// - Parameters:
-	///   - radius: A constant, indicating the radius.
+	///   - diameter: A constant, indicating the diameter.
 	///   - selectedColor: The `UIColor` used for the selected state, defaults to a light blue if `nil`.
 	///   - deselectedColor: The `UIColor` used for the deselected state, defaults to `.lightGray` if `nil`.
-	private func commonInit(radius: CGFloat, selectedColor: UIColor?, deselectedColor: UIColor?) {
-		let size = CGSize(width: radius, height: radius)
+	private func commonInit(diameter: CGFloat, selectedColor: UIColor?, deselectedColor: UIColor?) {
+		let innerCircleDiameter = diameter / 1.6
 		
 		backgroundColor      = .clear
 		self.selectedColor   = selectedColor ?? self.selectedColor
@@ -366,19 +366,18 @@ public class LTHRadioButton: UIView {
 		
 		addSubview(circle)
 		circle.backgroundColor    = .clear
-		circle.layer.cornerRadius = radius * 0.5
+		circle.layer.cornerRadius = diameter * 0.5
 		circle.layer.borderColor  = self.deselectedColor.cgColor
-		circle.layer.borderWidth  = radius * 0.1
-		circle.frame.size         = size
+		circle.layer.borderWidth  = diameter * 0.1
+		circle.frame.size         = CGSize(width: diameter, height: diameter)
 		circle.center             = center
 		
 		addSubview(innerCircle)
-		let iw = radius / 1.6
 		innerCircle.backgroundColor    = .clear
-		innerCircle.layer.cornerRadius = iw * 0.5
+		innerCircle.layer.cornerRadius = innerCircleDiameter * 0.5
 		innerCircle.layer.borderColor  = self.selectedColor.cgColor
 		innerCircle.layer.borderWidth  = 0
-		innerCircle.frame.size         = CGSize(width: iw, height: iw)
+		innerCircle.frame.size         = CGSize(width: innerCircleDiameter, height: innerCircleDiameter)
 		innerCircle.center             = center
 		
 		addSubview(waveCircle)
