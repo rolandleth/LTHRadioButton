@@ -358,37 +358,38 @@ public class LTHRadioButton: UIView {
 	///   - selectedColor: The `UIColor` used for the selected state, defaults to a light blue if `nil`.
 	///   - deselectedColor: The `UIColor` used for the deselected state, defaults to `.lightGray` if `nil`.
 	private func commonInit(radius: CGFloat, selectedColor: UIColor?, deselectedColor: UIColor?) {
-		let size = CGSize(width: radius, height: radius)
-		
-		backgroundColor      = .clear
-		self.selectedColor   = selectedColor ?? self.selectedColor
-		self.deselectedColor = deselectedColor ?? self.deselectedColor
-		
-		addSubview(circle)
-		circle.backgroundColor    = .clear
-		circle.layer.cornerRadius = radius * 0.5
-		circle.layer.borderColor  = self.deselectedColor.cgColor
-		circle.layer.borderWidth  = radius * 0.1
-		circle.frame.size         = size
-		circle.center             = center
-		
-		addSubview(innerCircle)
-		let iw = radius / 1.6
-		innerCircle.backgroundColor    = .clear
-		innerCircle.layer.cornerRadius = iw * 0.5
-		innerCircle.layer.borderColor  = self.selectedColor.cgColor
-		innerCircle.layer.borderWidth  = 0
-		innerCircle.frame.size         = CGSize(width: iw, height: iw)
-		innerCircle.center             = center
-		
-		addSubview(waveCircle)
-		waveCircle.backgroundColor    = .clear
-		waveCircle.layer.cornerRadius = innerCircle.layer.cornerRadius
-		waveCircle.layer.borderColor  = self.selectedColor.cgColor
-		waveCircle.layer.borderWidth  = 0
-		waveCircle.alpha              = 0
-		waveCircle.frame.size         = innerCircle.frame.size
-		waveCircle.center             = center
+        let size = CGSize(width: radius, height: radius)
+        
+        backgroundColor      = .clear
+        self.selectedColor   = selectedColor ?? self.selectedColor
+        self.deselectedColor = deselectedColor ?? self.deselectedColor
+        
+        addSubview(circle)
+        circle.backgroundColor    = .clear
+        circle.layer.cornerRadius = radius * 0.5
+        circle.layer.borderColor  = self.deselectedColor.cgColor
+        circle.layer.borderWidth  = radius * 0.1
+        circle.frame.size         = size
+        circle.frame.origin       = CGPoint.zero
+        
+        addSubview(innerCircle)
+        let iw = radius / 1.6
+        let center = radius / 2.0
+        innerCircle.backgroundColor    = .clear
+        innerCircle.layer.cornerRadius = iw * 0.5
+        innerCircle.layer.borderColor  = self.selectedColor.cgColor
+        innerCircle.layer.borderWidth  = 0
+        innerCircle.frame.size         = CGSize(width: iw, height: iw)
+        innerCircle.center             = CGPoint(x: center, y: center)
+        
+        addSubview(waveCircle)
+        waveCircle.backgroundColor    = .clear
+        waveCircle.layer.cornerRadius = innerCircle.layer.cornerRadius
+        waveCircle.layer.borderColor  = self.selectedColor.cgColor
+        waveCircle.layer.borderWidth  = 0
+        waveCircle.alpha              = 0
+        waveCircle.frame.size         = innerCircle.frame.size
+        waveCircle.center             = CGPoint(x: center, y: center)
 	}
 	
 }
