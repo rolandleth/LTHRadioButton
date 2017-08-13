@@ -72,7 +72,7 @@ public class LTHRadioButton: UIView {
 	
 	/// Sets a closure that will be called when the control is selected.
 	///
-	/// - Important: Calling this will also add a `tapGestureRecognizer` on the control.
+	/// - Important: Calling this will also add a `tapGestureRecognizer` on the control, if it wasn't already added previously by itself or `onDeselect`.
 	/// - Parameter closure: The closure the be called.
 	public func onSelect(execute closure: @escaping () -> Void) {
 		didSelect = closure
@@ -80,7 +80,7 @@ public class LTHRadioButton: UIView {
 	
 	/// Sets a closure that will be called when the control is deselected.
 	///
-	/// - Important: Calling this will also add a `tapGestureRecognizer` on the control.
+	/// - Important: Calling this will also add a `tapGestureRecognizer` on the control, if it wasn't already added previously by itself or `onSelect`.
 	/// - Parameter closure: The closure the be called.
 	public func onDeselect(execute closure: @escaping () -> Void) {
 		didDeselect = closure
@@ -359,6 +359,8 @@ public class LTHRadioButton: UIView {
 	///   - deselectedColor: The `UIColor` used for the deselected state, defaults to `.lightGray` if `nil`.
 	private func commonInit(diameter: CGFloat, selectedColor: UIColor?, deselectedColor: UIColor?) {
 		let innerCircleDiameter = diameter / 1.6
+		let radius = diameter * 0.5
+		let center = CGPoint(x: radius, y: radius)
 		
 		backgroundColor      = .clear
 		self.selectedColor   = selectedColor ?? self.selectedColor
@@ -366,7 +368,7 @@ public class LTHRadioButton: UIView {
 		
 		addSubview(circle)
 		circle.backgroundColor    = .clear
-		circle.layer.cornerRadius = diameter * 0.5
+		circle.layer.cornerRadius = radius
 		circle.layer.borderColor  = self.deselectedColor.cgColor
 		circle.layer.borderWidth  = diameter * 0.1
 		circle.frame.size         = CGSize(width: diameter, height: diameter)
