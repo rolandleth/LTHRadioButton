@@ -32,6 +32,16 @@ public class LTHRadioButton: UIView {
 	}
 	/// A `Boolean` value that indicates whether the button is selected.
 	public private(set) var isSelected = false
+	/// A `Boolean` value that indicates whether the button should add a `UITapGestureRecognizer`.
+	/// - Note: This defaults to `true` just so that `onSelect` and `onDeselect` can add the gesture recognizer automatically, but it is **not** added by default.
+	/// - Settings this to `true` will also add the required `UITapGestureRecognizer` if needed.
+	/// - Settings this to `false` will also remove the `UITapGestureRecognizer` if it was previously added.
+	public var useTapGestureRecognizer = true {
+		willSet {
+			guard newValue else { return removeGestureRecognizer(tapGesture) }
+			addTapGesture()
+		}
+	}
 	
 	/// The final width of the inner circle's border, used for filling.
 	private var innerBorderWidth: CGFloat {
@@ -72,7 +82,7 @@ public class LTHRadioButton: UIView {
 	
 	/// Sets a closure that will be called when the control is selected.
 	///
-	/// - Important: Calling this will also add a `tapGestureRecognizer` on the control, if it wasn't already added previously by itself or `onDeselect`.
+	/// - Important: Calling this will also add the required `UITapGestureRecognizer`, unless it was already added or `useTapGestureRecognizer` was set to `false`.
 	/// - Parameter closure: The closure the be called.
 	public func onSelect(execute closure: @escaping () -> Void) {
 		didSelect = closure
@@ -80,7 +90,7 @@ public class LTHRadioButton: UIView {
 	
 	/// Sets a closure that will be called when the control is deselected.
 	///
-	/// - Important: Calling this will also add a `tapGestureRecognizer` on the control, if it wasn't already added previously by itself or `onSelect`.
+	/// - Important: Calling this will also add the required `UITapGestureRecognizer`, unless it was already added or `useTapGestureRecognizer` was set to `false`.
 	/// - Parameter closure: The closure the be called.
 	public func onDeselect(execute closure: @escaping () -> Void) {
 		didDeselect = closure
@@ -323,8 +333,9 @@ public class LTHRadioButton: UIView {
 		deselect()
 	}
 	
-	/// Adds the `tapGestureRecognizer`.
+	/// Adds the `UITapGestureRecognizer`.
 	private func addTapGesture() {
+		guard useTapGestureRecognizer else { return }
 		guard gestureRecognizers?.contains(tapGesture) != true else { return }
 		
 		addGestureRecognizer(tapGesture)

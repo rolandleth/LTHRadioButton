@@ -18,7 +18,7 @@ class RadioButtonDemoTests: XCTestCase {
 	
 	// MARK: -
 	
-	func testDefaultValues() {
+	func testInitWithDefaultValues() {
 		radioButton = LTHRadioButton()
 		
 		XCTAssertNotNil(radioButton)
@@ -27,7 +27,7 @@ class RadioButtonDemoTests: XCTestCase {
 		XCTAssertEqual(radioButton.frame.size, CGSize(width: 18, height: 18))
 	}
 	
-	func testPassedParameters() {
+	func testInitWithParameters() {
 		let selectedColor = UIColor.red
 		let deselectedColor = UIColor.blue
 		let diameter: CGFloat = 20
@@ -131,6 +131,7 @@ class RadioButtonDemoTests: XCTestCase {
 			"waveCircle", "circle", "innerCircle",
 			"selectedColor", "deselectedColor",
 			"isSelected", "innerIncreaseDelta",
+			"useTapGestureRecognizer",
 			"didSelect", "didDeselect", "tapGesture.storage" // .storage for lazy vars.
 			// Computed properties aren't visible in mirrors.
 //			"innerBorderWidth", "innerIncreasedWidth"
@@ -173,6 +174,32 @@ class RadioButtonDemoTests: XCTestCase {
 		radioButton.deselect(animated: false)
 		
 		XCTAssertTrue(called)
+	}
+	
+	func testUseRecognizerTrueAddsRecognizer() {
+		radioButton = LTHRadioButton()
+		radioButton.useTapGestureRecognizer = true
+		
+		XCTAssertEqual(1, radioButton.gestureRecognizers?.count)
+	}
+	
+	func testUseRecognizerFalseBeforeCallbacksDoesNotAddRecognizer() {
+		radioButton = LTHRadioButton()
+		radioButton.useTapGestureRecognizer = false
+		
+		radioButton.onSelect { }
+		
+		XCTAssertNil(radioButton.gestureRecognizers)
+	}
+	
+	func testUseRecognizerFalseRemovesRecognizer() {
+		radioButton = LTHRadioButton()
+		
+		radioButton.onSelect { }
+		
+		radioButton.useTapGestureRecognizer = false
+		
+		XCTAssertEqual(true, radioButton.gestureRecognizers?.isEmpty)
 	}
 	
 	

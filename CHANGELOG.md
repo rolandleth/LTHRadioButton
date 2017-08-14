@@ -1,3 +1,13 @@
+# 1.1.2
+
+* Added `onSelect` and `onDeselect` callbacks.
+* Fixed `radius` to `diameter` parameter name.
+* Better center positioning of subviews (https://github.com/rolandleth/LTHRadioButton/pull/5).
+
+# 1.1.1
+
+* Improved Objective-C naming.
+
 # 1.1.0
 
 * Interface builder suport added.

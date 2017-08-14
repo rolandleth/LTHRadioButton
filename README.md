@@ -40,9 +40,9 @@ Drag `LTHRadioButton.swift` from the `source` folder into your Xcode project.
 
 ## How to use
 
-The initializer takes up to 3 params: a `radius`, a `selectedColor`, and a `deselectedColor`. All of them are optional:
+The initializer takes up to 3 params: a `diameter`, a `selectedColor`, and a `deselectedColor`. All of them are optional:
 
-* `radius` defaults to `18`
+* `diameter` defaults to `18`
 * `selectedColor` defaults to a light blue
 * `deselectedColor` defaults to `UIColor.lightGray`
 
@@ -54,13 +54,23 @@ It doesn't use Auto Layout internally, but after initialization it will have a p
 
 `isSelected` - Indicates whether the radio button is selected.
 
+`useTapGestureRecognizer` - Indicates whether a tap gesture recognizer should be added to the control when setting callbacks. This defaults to `true` just so that `onSelect` and `onDeselect` can add the gesture recognizer automatically, but the recognizer is **not** added by default.
+  - Settings this to `true` will also add the required `UITapGestureRecognizer` if needed.
+  - Settings this to `false` will also remove the `UITapGestureRecognizer` if it was previously added.
+
 #### Methods
 
 ```swift
-init(radius: CGFloat = 18, selectedColor: UIColor? = nil, deselectedColor: UIColor? = nil) // Colors default internally if nil.
+init(diameter: CGFloat = 18, selectedColor: UIColor? = nil, deselectedColor: UIColor? = nil) // Colors default internally if nil.
 func select(animated: Bool = true) // Selects the radio button.
 func deselect(animated: Bool = true) // Deselects the radio button.
 ```
+
+### Callbacks
+
+You can make use of the `onSelect` and `onDeselect` methods to add closures to be run when selecting/deselecting the control. Since these closures make most sense for taps and because there are no recognizers by default, these methods will also add one (and only one) `UITapGestureRecognizer` to the control to handle the taps; the closure calls happen right as the animations begin.
+
+If you'd like to use the callbacks but don't need the tap gesture recognizer, you can set `useTapGestureRecognizer` to `false`.
 
 ### Example
 
@@ -76,13 +86,21 @@ NSLayoutConstraint.activate([
   radioButton.widthAnchor.constraint(equalToConstant: radioButton.frame.width)]
 )
 
+radioButton.onSelect {
+  print("I'm selected.")
+}
+
+radioButton.onDeselect {
+  print("I'm deselected.")
+}
+
 [...]
 
-radioButton.select()
+radioButton.select() // I'm selected.
 
 [...]
 
-radioButton.deselect(animated: false)
+radioButton.deselect(animated: false) // I'm deselected.
 ```
 
 ## Apps using this control
