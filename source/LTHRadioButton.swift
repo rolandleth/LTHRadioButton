@@ -108,7 +108,7 @@ public class LTHRadioButton: UIView {
 		borderWidth.toValue        = innerBorderWidth
 		borderWidth.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseIn)
 		borderWidth.fillMode       = kCAFillModeBackwards
-		borderWidth.beginTime      = CACurrentMediaTime()
+		borderWidth.beginTime      = layer.lth_currentMediaTime
 		
 		return borderWidth
 	}
@@ -132,7 +132,7 @@ public class LTHRadioButton: UIView {
 		group.duration       = 0.1
 		group.animations     = [bounds, cornerRadius]
 		group.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseOut)
-		group.beginTime      = CACurrentMediaTime() + 0.23
+		group.beginTime      = layer.lth_currentMediaTime + 0.23
 		
 		return group
 	}
@@ -156,7 +156,7 @@ public class LTHRadioButton: UIView {
 		group.duration       = 0.15
 		group.animations     = [bounds, cornerRadius]
 		group.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseOut)
-		group.beginTime      = CACurrentMediaTime() + 0.31
+		group.beginTime      = layer.lth_currentMediaTime + 0.31
 		
 		return group
 	}
@@ -170,7 +170,7 @@ public class LTHRadioButton: UIView {
 		borderColor.toValue        = selectedColor.cgColor
 		borderColor.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionLinear)
 		borderColor.fillMode       = kCAFillModeBackwards
-		borderColor.beginTime      = CACurrentMediaTime() + 0.28
+		borderColor.beginTime      = layer.lth_currentMediaTime + 0.28
 		
 		return borderColor
 	}
@@ -197,7 +197,7 @@ public class LTHRadioButton: UIView {
 		group.duration       = 0.25
 		group.animations     = [bounds, cornerRadius]
 		group.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseOut)
-		group.beginTime      = CACurrentMediaTime() + start
+		group.beginTime      = layer.lth_currentMediaTime + start
 		
 		return group
 	}
@@ -210,7 +210,7 @@ public class LTHRadioButton: UIView {
 		opacity.fromValue      = 0.3
 		opacity.toValue        = 0
 		opacity.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseOut)
-		opacity.beginTime      = CACurrentMediaTime() + 0.26
+		opacity.beginTime      = layer.lth_currentMediaTime + 0.26
 		
 		return opacity
 	}
@@ -224,7 +224,7 @@ public class LTHRadioButton: UIView {
 		borderWidth.fromValue      = frame.width * 0.3
 		borderWidth.toValue        = 0
 		borderWidth.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseOut)
-		borderWidth.beginTime      = CACurrentMediaTime() + 0.29
+		borderWidth.beginTime      = layer.lth_currentMediaTime + 0.29
 		
 		return borderWidth
 	}
@@ -247,7 +247,7 @@ public class LTHRadioButton: UIView {
 		group.duration       = duration
 		group.animations     = [borderWidth, opacity]
 		group.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseIn)
-		group.beginTime      = CACurrentMediaTime()
+		group.beginTime      = layer.lth_currentMediaTime
 		
 		return group
 	}
@@ -260,7 +260,7 @@ public class LTHRadioButton: UIView {
 		borderColor.fromValue      = selectedColor.cgColor
 		borderColor.toValue        = deselectedColor.cgColor
 		borderColor.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
-		borderColor.beginTime      = CACurrentMediaTime()
+		borderColor.beginTime      = layer.lth_currentMediaTime
 		
 		return borderColor
 	}
@@ -401,6 +401,21 @@ public class LTHRadioButton: UIView {
 		waveCircle.alpha              = 0
 		waveCircle.frame.size         = innerCircle.frame.size
 		waveCircle.center             = center
+	}
+	
+}
+
+fileprivate extension CALayer {
+	
+	/// Converts `CACurrentMediaTime()` to the layer's local time.
+	///
+	/// There seems to be an issue where over-time animations can get delayed. The delay can be multiple seconds and forever-growing and this is due to the fact that each `CALayer` and `CAAnimation` instance has its own local concept of time, which may differ from global time — `CACurrentMediaTime()` is global.
+	///
+	/// - Authors:
+	///     - Thanks to [@alexandre-g](https://github.com/alexandre-g) for opening this [issue](https://github.com/rolandleth/LTHRadioButton/issues/6) and helping find the fix for it.
+	///     - Thanks to [@kgaidis](https://github.com/kgaidis) for his fix in [this pull request](https://github.com/airbnb/lottie-ios/pull/618) for Lottie.
+	var lth_currentMediaTime: CFTimeInterval {
+		return convertTime(CACurrentMediaTime(), from: nil)
 	}
 	
 }
