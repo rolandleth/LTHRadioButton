@@ -18,6 +18,7 @@ public class LTHRadioButton: UIView {
 	/// The view used for the margin.
 	private let innerCircle  = UIView()
 	/// The color used for the selected state.
+	@IBInspectable
 	public var selectedColor = UIColor(red: 0.29, green: 0.56, blue: 0.88, alpha: 1.0) {
 		willSet {
 			innerCircle.layer.borderColor = newValue.cgColor
@@ -25,6 +26,7 @@ public class LTHRadioButton: UIView {
 		}
 	}
 	/// The color used for the deselected state.
+	@IBInspectable
 	public var deselectedColor = UIColor.lightGray {
 		willSet {
 			circle.layer.borderColor = newValue.cgColor

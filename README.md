@@ -1,4 +1,5 @@
 # LTHRadioButton
+![](https://build.appcenter.ms/v0.1/apps/2f06d652-e163-49de-9cb5-e56a2a292058/branches/master/badge)
 
 Slightly inspired by Google's material radio button.
 

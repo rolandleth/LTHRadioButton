@@ -47,7 +47,7 @@ class RadioButtonDemoTests: XCTestCase {
 			.loadNibNamed("RadioButton", owner: self, options: nil)?
 			.first as? LTHRadioButton
 		
-		let diameter: CGFloat = 24
+		let diameter: CGFloat = 30
 		
 		XCTAssertNotNil(radioButton, "Failed to load xib.")
 		XCTAssertEqual(radioButton.selectedColor, UIColor.blue)
