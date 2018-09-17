@@ -137,7 +137,7 @@ class RadioButtonDemoTests: XCTestCase {
 //			"innerBorderWidth", "innerIncreasedWidth"
 		]
 		
-		let actual = Set(mirror.children.flatMap { $0.label })
+		let actual = Set(mirror.children.compactMap { $0.label })
 		let difference = actual.symmetricDifference(expected)
 		
 		// ¯\-(ツ)-/¯ Not super-useful, I know.
