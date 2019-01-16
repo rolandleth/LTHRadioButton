@@ -237,7 +237,7 @@ public class LTHRadioButton: UIView {
 	/// Initializes and returns the animation group for emptying the inner circle.
 	private func innerDecreaseGroupReverse(duration: Double) -> CAAnimationGroup {
 		let group = CAAnimationGroup()
-		
+
 		let borderWidth       = CABasicAnimation(keyPath: "borderWidth")
 		borderWidth.fromValue = innerBorderWidth
 		borderWidth.toValue   = 0.0

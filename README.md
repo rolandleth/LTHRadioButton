@@ -1,17 +1,17 @@
 # LTHRadioButton
-![](https://build.appcenter.ms/v0.1/apps/2f06d652-e163-49de-9cb5-e56a2a292058/branches/master/badge)
+![Build status][image-1]
 
 Slightly inspired by Google's material radio button.
 
-The clip below has 3 sections: full speed, 25% and 10%, but after converting it to GIF, it actually made it longer, so the 10% part takes a really long time. [Here's](https://rolandleth.com/images/radio-button/video.mp4) an mp4 link; try with Chrome if Safari doesn't work - for me it doesn't.
+The clip below has 3 sections: full speed, 25% and 10%, but after converting it to GIF, it actually made it longer, so the 10% part takes a really long time. [Here's][1] an mp4 link; try with Chrome if Safari doesn't work - for me it doesn't.
 
-![](https://rolandleth.com/images/radio-button/gif.gif)
+![][image-2]
 
 ## How to install
 
 #### CocoaPods
 
-[CocoaPods](https://cocoapods.org) is a dependency manager for Cocoa projects. You can install it with the following terminal command:
+[CocoaPods][2] is a dependency manager for Cocoa projects. You can install it with the following terminal command:
 
 ```
 gem install cocoapods
@@ -109,4 +109,11 @@ radioButton.deselect(animated: false) // I'm deselected.
 If you're using this control, I'd love hearing from you!
 
 ## License
-Licensed under MIT. If you'd like (or need) a license without attribution, don't hesitate to [contact me](mailto:roland@leth.ro).
+Licensed under MIT. If you'd like (or need) a license without attribution, don't hesitate to [contact me][3].
+
+[1]:	https://rolandleth.com/images/radio-button/video.mp4
+[2]:	https://cocoapods.org
+[3]:	mailto:roland@leth.ro
+
+[image-1]:	https://build.appcenter.ms/v0.1/apps/5db0760a-3f93-4409-9101-7a5a037bfb14/branches/master/badge
+[image-2]:	https://rolandleth.com/images/radio-button/gif.gif
