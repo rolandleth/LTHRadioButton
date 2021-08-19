@@ -1,13 +1,22 @@
 # LTHRadioButton
-![Build status][image-1]
 
 Slightly inspired by Google's material radio button.
 
 The clip below has 3 sections: full speed, 25% and 10%, but after converting it to GIF, it actually made it longer, so the 10% part takes a really long time. [Here's][1] an mp4 link; try with Chrome if Safari doesn't work - for me it doesn't.
 
-![][image-2]
+![][image-1]
 
 ## How to install
+
+### Swift Package Manager
+
+**NOTE**: _These instructions are intended for usage on Xcode 11 and higher. Xcode 11 is the first version of Xcode that integrates Swift Package Manager and makes it way easier to use than it was at the command line. If you are using older versions of Xcode, we recommend using CocoaPods._
+
+1. Go to File > Swift Packages > Add Package Dependency...
+2. Paste the URL to the `LTHRadioButton` repo on GitHub (https://github.com/rolandleth/LTHRadioButton.git) into the search bar, then hit the Next button:
+3. Select what version you want to use, then hit next (Xcode will automatically suggest the current version Up to Next Major).
+4. Select the `LTHRadioButton` library and then hit finish.
+5. You're done!
 
 #### CocoaPods
 
@@ -43,9 +52,9 @@ Drag `LTHRadioButton.swift` from the `source` folder into your Xcode project.
 
 The initializer takes up to 3 params: a `diameter`, a `selectedColor`, and a `deselectedColor`. All of them are optional:
 
-* `diameter` defaults to `18`
-* `selectedColor` defaults to a light blue
-* `deselectedColor` defaults to `UIColor.lightGray`
+- `diameter` defaults to `18`
+- `selectedColor` defaults to a light blue
+- `deselectedColor` defaults to `UIColor.lightGray`
 
 It doesn't use Auto Layout internally, but after initialization it will have a proper size, so you can simply create constraints based on its `frame.width` and `frame.height`.
 
@@ -56,8 +65,9 @@ It doesn't use Auto Layout internally, but after initialization it will have a p
 `isSelected` - Indicates whether the radio button is selected.
 
 `useTapGestureRecognizer` - Indicates whether a tap gesture recognizer should be added to the control when setting callbacks. This defaults to `true` just so that `onSelect` and `onDeselect` can add the gesture recognizer automatically, but the recognizer is **not** added by default.
-  - Settings this to `true` will also add the required `UITapGestureRecognizer` if needed.
-  - Settings this to `false` will also remove the `UITapGestureRecognizer` if it was previously added.
+
+- Settings this to `true` will also add the required `UITapGestureRecognizer` if needed.
+- Settings this to `false` will also remove the `UITapGestureRecognizer` if it was previously added.
 
 #### Methods
 
@@ -109,11 +119,10 @@ radioButton.deselect(animated: false) // I'm deselected.
 If you're using this control, I'd love hearing from you!
 
 ## License
+
 Licensed under MIT. If you'd like (or need) a license without attribution, don't hesitate to [contact me][3].
 
-[1]:	https://rolandleth.com/images/radio-button/video.mp4
-[2]:	https://cocoapods.org
-[3]:	mailto:roland@leth.ro
-
-[image-1]:	https://build.appcenter.ms/v0.1/apps/5db0760a-3f93-4409-9101-7a5a037bfb14/branches/master/badge
-[image-2]:	https://rolandleth.com/images/radio-button/gif.gif
+[1]: https://rolandleth.com/images/radio-button/video.mp4
+[2]: https://cocoapods.org
+[3]: mailto:roland@hey.com
+[image-1]: https://rolandleth.com/images/radio-button/gif.gif
